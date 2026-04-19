@@ -144,6 +144,9 @@ class MainApplication(QMainWindow):
 
         central_widget.setLayout(layout)
 
+        # Keep reference to statistics window to prevent garbage collection
+        self.stats_window = None
+
     def _show_add_topic_dialog(self):
         """Open the topic dialog"""
         dialog = TopicDialog(self)
@@ -152,8 +155,8 @@ class MainApplication(QMainWindow):
 
     def _show_statistics(self):
         """Open the statistics window"""
-        stats_window = StatisticsWindow(self)
-        stats_window.exec()
+        self.stats_window = StatisticsWindow(self)
+        self.stats_window.show()
 
 
 # Entry point
